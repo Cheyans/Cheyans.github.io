@@ -23,7 +23,7 @@ btn.click(function(e) {
   //clean & create circle
   btn.removeClass('current');
   $(this).addClass('current');
-  var circle = $("<div unselectable='on' id='circle'></div>");
+  var circle = $("<div unselectable='on' id='circle'>"+text+"</div>");
 
   $('.background').append(circle);
 
