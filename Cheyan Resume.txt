@@ -1,0 +1,236 @@
+﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Important notes:
+% This template needs to be compiled with XeLaTeX.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[letterpaper]{deedy-resume} % Use US Letter paper, change to a4paper for A4 
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\namesection{Cheyan}{Setayesh}{ % Your name
+\href{mailto:Cheyan.set@gmail.com}{Cheyan.set@gmail.com} % Your contact information
+}
+
+%----------------------------------------------------------------------------------------
+%	LEFT COLUMN
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{0.33\textwidth} % The left column takes up 33% of the text width of the page
+
+%------------------------------------------------
+% Skills
+%------------------------------------------------
+
+\section{Skills}
+
+\subsection{Programming}
+
+\descript{Languages:}
+Java \textbullet{} Javascript \textbullet{} Python \textbullet{} C \\
+HTML \textbullet{} CSS \textbullet{} \LaTeX\ \\ 
+\descript{Tools \& Frameworks:}
+Node.js \textbullet{} Spring MVC \textbullet{} Jquery \\
+JavaFX \textbullet{} MongoDB \textbullet{} MySQL \\
+\descript{Environments:}
+Windows \textbullet{} Linux/OSX \\
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+% Links
+%------------------------------------------------
+
+\section{Links} 
+
+Github:// \href{http://github.com/Cheyans}{\bf Cheyans} \\
+LinkedIn:// \href{https://www.linkedin.com/in/cheyans}{\bf Cheyans} \\
+DevPost:// \href{http://devpost.com/Cheyans}{\bf Cheyans} \\
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+% Education
+%------------------------------------------------
+
+\section{Education} 
+
+\subsection{University of}
+\subsection{Massachusetts Amherst}
+
+\descript{Computer Science}
+\location{Expected May 2017 | Amherst, MA}
+\location{ Major GPA: 3.3 / 4.0 \\
+Cum. GPA: 3.25 / 4.0}
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+
+\subsection{University of}
+\subsection{Connecticut Storrs}
+
+\descript{Electrical Engineering}
+\location{2013-2014 | Storrs, CT}
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+% Coursework
+%------------------------------------------------
+
+\section{Coursework}
+
+\subsection{UMass}
+
+Computer Systems Principles \\
+Reasoning Under Uncertainty \\
+Data Structures  \\
+Linear Algebra \\
+Advanced Assignments for Intro to Prog. \\
+Introduction to Programming \\
+
+\subsection{UConn}
+
+Basic Low Level Programming with C \\
+Matlab Programming for Engineers \\
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+% Hobbies
+%------------------------------------------------
+
+\section{Hobbies} 
+
+Ultimate Frisbee\\
+Running\\
+Built computers for personal use\\
+Yearly IAB Children’s Fair – 2009-2013\\
+
+\sectionspace % Some whitespace after the section
+
+%----------------------------------------------------------------------------------------
+
+\end{minipage} % The end of the left column
+\hfill
+%
+%----------------------------------------------------------------------------------------
+%	RIGHT COLUMN
+%----------------------------------------------------------------------------------------
+%
+\begin{minipage}[t]{0.66\textwidth} % The right column takes up 66% of the text width of the page
+
+%------------------------------------------------
+% Experience
+%------------------------------------------------
+
+\section{Experience}
+
+\runsubsection{Kronos}
+\descript{|Service Oriented Software Engineer Intern}
+
+\location{June 2015 – Sep 2015 | Chelmsford, MA}
+\begin{tabular}{l}
+Worked as a software engineer providing assistance to the Attestation Toolkit team.\\
+	{\parbox{0.9\textwidth}{
+    	\begin{tightitemize}
+        \vspace{\topsep} % Hacky fix for awkward extra vertical space
+        \item Developed a module for Workforce Central product that provides an updated interface for managers to calculate and manage meal penalties for Puerto Rican workers. The implementation is written in Java, JavaScript, JSP files, JQuery and MSSQL.
+		\item Testing of various fixes, bugs, and simple penetration testing on core modules.
+		\item Various customer interaction, starting from the design phase to the rollout phase.
+        \end{tightitemize}
+	}}
+\end{tabular}
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+
+%------------------------------------------------
+% Relevant Project Work
+%------------------------------------------------
+
+\section{Relevant Project Work}
+
+\runsubsection{FAF Client}
+\descript{|micheljung.github.io/downlords-faf-client}
+
+\location{June 2015 – Present}
+\begin{tabular}{l}
+A reimplementation of the python based FAForever client and refactoring of \\API/Server code. It is a 3rd party client that supports the unsupported game \\Supreme Commander.\\
+	{\parbox{0.9\textwidth}{
+		\begin{tightitemize}
+		\item Written in Java and JavaFX using the Spring framework and Gradle as a dependency manager.
+		\item Contributed to a RESTFUL API using Flask for server client \\communication
+		\item Used by over 2500 people daily, ranging from a few minutes to 24 hours of usage.
+		\end{tightitemize}
+	}}
+\end{tabular}
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+
+
+\runsubsection{Party Smart}
+\descript{|partysmart.azurewebsites.net}
+
+\location{Oct 2015 – Present}
+\begin{tabular}{l}
+PartySmart is a party registration web application that allows off campus students to \\ register their parties with Umass Off Campus Student Services. Residents within a \\ quarter mile radius can directly complain to party hosts through the web app rather \\ than involving the police. \\
+	{\parbox{0.9\textwidth}{
+		\begin{tightitemize}
+		\item One of top 8 projects at HackUmass amongst the 69 projects submitted and winner of Umass Off-Campus Student Services sponsor prize.
+		\item Built with Node.js/Express using mongodb, Bing Maps api, and Google’s Materialize library.
+        \item I was tasked with implementing Bing maps, handling data sent between the front-end and back-end along with improving the UI.
+		\end{tightitemize}
+	}}
+\end{tabular}
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+
+\runsubsection{Sharks \& Minnows Online}
+\descript{|SharksAndMinnows.xyz:8080}
+
+\location{January 2016}
+\begin{tabular}{l}
+An online multiplayer rendition of sharks \& minnows built during HackBeanPot 2016.\\
+	{\parbox{0.9\textwidth}{
+		\begin{tightitemize}
+		\item One of the top 10 projects at HackBeanPot
+		\item Multiplayer interfacing created using by Socket.io and served up on a Node.js server
+		\end{tightitemize}
+	}}
+\end{tabular}
+
+\sectionspace % Some whitespace after the section
+
+%----------------------------------------------------------------------------------------
+
+\runsubsection{Friend.me}
+\descript{|Mobile Application Concept}
+
+\location{Oct 2015}
+\begin{tabular}{l}
+An app that matches individuals to other people around them according to their\\ interests and proximity and allows them to get in touch. It can suggest restaurants,\\ bars, group activities around them as a possible place to meet. \\
+	{\parbox{0.9\textwidth}{
+		\begin{tightitemize}
+        \item Winner of the BostonHacks \$1k entrepreneurship prize from 1517 Fund
+		\end{tightitemize}
+	}}
+\end{tabular}
+
+\sectionspace % Some whitespace after the section
+
+%------------------------------------------------
+
+\end{minipage} % The end of the right column
+
+\end{document}
