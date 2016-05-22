@@ -1,0 +1,264 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deedy - One Page Two Column Resume
+% LaTeX Template
+% Version 1.1 (30/4/2014)
+%
+% Original author:
+% Debarghya Das (http://debarghyadas.com)
+%
+% Original repository:
+% https://github.com/deedydas/Deedy-Resume
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% This template uses several fonts not included with Windows/Linux by
+% default. If you get compilation errors saying a font is missing, find the line
+% on which the font is used and either change it to a font included with your
+% operating system or comment the line out to use the default font.
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% TODO:
+% 1. Integrate biber/bibtex for article citation under publications.
+% 2. Figure out a smoother way for the document to flow onto the next page.
+% 3. Add styling information for a "Projects/Hacks" section.
+% 4. Add location/address information
+% 5. Merge OpenFont and MacFonts as a single sty with options.
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CHANGELOG:
+% v1.1:
+% 1. Fixed several compilation bugs with \renewcommand
+% 2. Got Open-source fonts (Windows/Linux support)
+% 3. Added Last Updated
+% 4. Move Title styling into .sty
+% 5. Commented .sty file.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Known Issues:
+% 1. Overflows onto second page if any column's contents are more than the
+% vertical limit
+% 2. Hacky space on the first bullet point on the second column.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[]{deedy-resume-openfont}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     LAST UPDATED DATE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lastupdated
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     TITLE NAME
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\namesection{Cheyan}{Setayesh}{ % Your name
+\href{mailto:Cheyan.set@gmail.com}{Cheyan.set@gmail.com} % Your contact information
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN ONE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minipage}[t]{0.33\textwidth} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Skills
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Skills}
+
+\subsection{Languages:}
+Java \textbullet{} Javascript \textbullet{} Python \textbullet{} C \\
+HTML \textbullet{} CSS \textbullet{} \LaTeX\ 
+\sectionsep
+\subsection{Tools \& Frameworks:}
+Node.js \textbullet{} Spring MVC \textbullet{} Jquery \\
+JavaFX \textbullet{} MongoDB \textbullet{} MySQL \\
+React \textbullet{} Docker
+\sectionsep
+\subsection{Environments:}
+Windows \textbullet{} Linux/OSX
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     LINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Links} 
+Github:// \href{http://github.com/Cheyans}{\bf Cheyans} \\
+LinkedIn:// \href{https://www.linkedin.com/in/cheyans}{\bf Cheyans} \\
+DevPost:// \href{http://devpost.com/Cheyans}{\bf Cheyans}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Education
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Education} 
+
+\subsection{University of}
+\subsection{Massachusetts Amherst}
+
+\descript{Computer Science}
+\location{Expected May 2017 | Amherst, MA}
+\location{ Major GPA: 3.34 / 4.0 \\
+Cum. GPA: 3.03 / 4.0}
+\sectionsep
+
+\subsection{University of}
+\subsection{Connecticut Storrs}
+\descript{Electrical Engineering}
+\location{2013-2014 | Storrs, CT}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     COURSEWORK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Coursework}
+
+\subsection{UMass}
+
+Operating Systems\\
+Web Programming\\
+Artificial Intelligence \\
+Computer Systems Principles \\
+Reasoning Under Uncertainty \\
+Data Structures  \\
+Linear Algebra \\
+Advanced Assignments for Intro to Prog. \\
+Introduction to Programming \\
+\sectionsep
+
+\subsection{UConn}
+
+Basic Low Level Programming with C \\
+Matlab Programming for Engineers
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     HOBBIES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hobbies} 
+
+Ultimate Frisbee\\
+Running\\
+Built computers for personal use\\
+Yearly IAB Children’s Fair – 2009-2013
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN TWO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{minipage} 
+\hfill
+\begin{minipage}[t]{0.66\textwidth} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experience}
+
+\runsubsection{Kronos}
+\descript{|Service Oriented Software Engineer Intern}
+
+\location{June 2015 – Sep 2015 | Chelmsford, MA}
+\begin{tabular}{l}
+Worked as a software engineer providing assistance to the Attestation Toolkit team.\\
+	{\parbox{0.9\textwidth}{
+    	\begin{tightemize}
+        \vspace{\topsep} % Hacky fix for awkward extra vertical space
+        \item Developed a module for Workforce Central product that provides an updated interface for managers to calculate and manage meal penalties for Puerto Rican workers. The implementation is written in Java, JavaScript, JSP files, JQuery and MSSQL.
+		\item Testing of various fixes, bugs, and simple penetration testing on core modules.
+		\item Various customer interaction, starting from the design phase to the rollout phase.
+        \end{tightemize}
+	}}
+\end{tabular}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     RELEVANT PROJECT WORK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Relevant Project Work}
+
+\runsubsection{FAF Client}
+\descript{|micheljung.github.io/downlords-faf-client}
+
+\location{June 2015 – Present}
+\begin{tabular}{l}
+A reimplementation of the python based FAForever client and refactoring of \\API/Server code. It is a 3rd party client that supports the unsupported game \\Supreme Commander.\\
+	{\parbox{0.9\textwidth}{
+		\begin{tightemize}
+		\item Written in Java and JavaFX using the Spring framework and Gradle as a dependency manager.
+		\item Contributed to a RESTFUL API using Flask for server client \\communication
+		\item Used by over 2500 people daily, ranging from a few minutes to 24 hours of usage.
+		\end{tightemize}
+	}}
+\end{tabular}
+\sectionsep
+
+\runsubsection{Party Smart}
+\descript{|partysmart.azurewebsites.net}
+
+\location{Oct 2015 – Present}
+\begin{tabular}{l}
+PartySmart is a party registration web application that allows off campus students to \\ register their parties with Umass Off Campus Student Services. Residents within a \\ quarter mile radius can directly complain to party hosts through the web app rather \\ than involving the police. \\
+	{\parbox{0.9\textwidth}{
+		\begin{tightemize}
+		\item One of top 8 projects at HackUmass amongst the 69 projects submitted and winner of Umass Off-Campus Student Services sponsor prize.
+		\item Built with Node.js/Express using mongodb, Bing Maps api, and Google’s Materialize library.
+        \item I was tasked with implementing Bing maps, handling data sent between the front-end and back-end along with improving the UI.
+		\end{tightemize}
+	}}
+\end{tabular}
+\sectionsep
+
+\runsubsection{Sharks \& Minnows Online}
+\descript{|SharksAndMinnows.xyz:8080}
+
+\location{January 2016}
+\begin{tabular}{l}
+An online multiplayer rendition of sharks \& minnows built during HackBeanPot 2016.\\
+	{\parbox{0.9\textwidth}{
+		\begin{tightemize}
+		\item One of the top 10 projects at HackBeanPot
+		\item Multiplayer interfacing created using by Socket.io and served up on a Node.js server
+		\end{tightemize}
+	}}
+\end{tabular}
+\sectionsep
+
+\runsubsection{Friend.me}
+\descript{|Mobile Application Concept}
+
+\location{Oct 2015}
+\begin{tabular}{l}
+An app that matches individuals to other people around them according to their\\ interests and proximity and allows them to get in touch. It can suggest restaurants,\\ bars, group activities around them as a possible place to meet. \\
+	{\parbox{0.9\textwidth}{
+		\begin{tightemize}
+        \item Winner of the BostonHacks \$1k entrepreneurship prize from 1517 Fund
+		\end{tightemize}
+	}}
+\end{tabular}
+
+
+\end{minipage} 
+\end{document}  \documentclass[]{article}
