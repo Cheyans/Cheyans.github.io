@@ -45,7 +45,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[]{deedy-resume-openfont}
-
+\usepackage{fancyhdr}
+ 
+\pagestyle{fancy}
+\fancyhf{}
 
 \begin{document}
 
@@ -61,7 +64,6 @@
 %     TITLE NAME
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \namesection{Cheyan}{Setayesh}{ % Your name
 \href{mailto:Cheyan.set@gmail.com}{Cheyan.set@gmail.com} % Your contact information
 }
@@ -71,104 +73,59 @@
 %     COLUMN ONE
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{minipage}[t]{0.33\textwidth} 
+\begin{minipage}[t]{0.27\textwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Skills
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Skills}
 
 \subsection{Languages:}
 Java \textbullet{} Javascript \textbullet{} Python \textbullet{} C \\
-HTML \textbullet{} CSS \textbullet{} \LaTeX\ 
+Typescript \textbullet{} SQL \textbullet{} Scala \textbullet{} HTML \\
+CSS
 \sectionsep
+
 \subsection{Tools \& Frameworks:}
-Node.js \textbullet{} Spring MVC \textbullet{} Jquery \\
-JavaFX \textbullet{} MongoDB \textbullet{} MySQL \\
-React \textbullet{} Docker
-\sectionsep
+Flask \textbullet{} Node.js \textbullet{} React \textbullet{} JavaFX \\
+Angular 1.6 \textbullet{} MySQL \textbullet{} Cassandra\\
+Snowflake \textbullet{} MongoDB \textbullet{} Docker\\
+Nginx \textbullet{} Avro \textbullet{} Kafka
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
 \subsection{Environments:}
-Windows \textbullet{} Linux/OSX
-\sectionsep
+Android \textbullet{} Linux/OSX
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     LINKS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Links} 
-Github:// \href{http://github.com/Cheyans}{\bf Cheyans} \\
-LinkedIn:// \href{https://www.linkedin.com/in/cheyans}{\bf Cheyans} \\
-DevPost:// \href{http://devpost.com/Cheyans}{\bf Cheyans}
-\sectionsep
+\href{http://github.com/Cheyans}{\bf Github://Cheyans} \\
+\href{https://www.linkedin.com/in/cheyans}{\bf LinkedIn://Cheyans} \\
+\href{http://devpost.com/Cheyans}{\bf DevPost://Cheyans}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Education
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Education} 
-
-\subsection{University of}
-\subsection{Massachusetts Amherst}
-
+\subsection{UMass Amherst}
 \descript{Computer Science}
-\location{Expected May 2017 | Amherst, MA}
-\location{ Major GPA: 3.34 / 4.0 \\
-Cum. GPA: 3.03 / 4.0}
+\location{2014-2017}
+\location{ Major GPA: 3.47 / 4.0 \\
+Cum. GPA: 3.36 / 4.0}
 \sectionsep
 
-\subsection{University of}
-\subsection{Connecticut Storrs}
+\subsection{UConn Storrs}
 \descript{Electrical Engineering}
-\location{2013-2014 | Storrs, CT}
-\sectionsep
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     COURSEWORK
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Coursework}
-
-\subsection{UMass}
-
-Operating Systems\\
-Web Programming\\
-Artificial Intelligence \\
-Computer Systems Principles \\
-Reasoning Under Uncertainty \\
-Data Structures  \\
-Linear Algebra \\
-Advanced Assignments for Intro to Prog. \\
-Introduction to Programming \\
-\sectionsep
-
-\subsection{UConn}
-
-Basic Low Level Programming with C \\
-Matlab Programming for Engineers
-\sectionsep
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     HOBBIES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Hobbies} 
-
-Ultimate Frisbee\\
-Running\\
-Built computers for personal use\\
-Yearly IAB Children’s Fair – 2009-2013
+\location{2013-2014}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %     COLUMN TWO
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\end{minipage} 
-\hfill
-\begin{minipage}[t]{0.66\textwidth} 
+\end{minipage}
+\begin{minipage}[t]{0.71\textwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     EXPERIENCE
@@ -176,22 +133,60 @@ Yearly IAB Children’s Fair – 2009-2013
 
 \section{Experience}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     JANA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\runsubsection{Jana Mobile}
+\descript{| Software Engineer 1} 
+\location{June 2017 – June 2018 | Boston, MA}
+
+\begin{tabular}{l}
+Full stack software engineer for the Growth and Core UX team to help build the app \\ mCent Browser, an advertisement based mobile browser for free prepaid phone recharge. \\
+	{\parbox{0.9\textwidth}{
+    	\begin{tightemize}
+        \vspace{\topsep}
+        \item Used Chromium based Android to create the browser and Flask, Cassandra, Kafka, and Avro for supporting server and Snowflake for data warehousing
+        \item Created and maintained referral system and supporting analytics driving at its peak over 80\% of new users
+        \item Implemented major product features used by over to 1.5MM users daily
+        \item Worked in market to uncover app redesign usability and technical issues
+        \item Addressed a variety of different data issues ranging from duplicate user ids to normalizing inconsistent data sets 
+        \end{tightemize}
+	}}
+\end{tabular}
+\descript{Software Engineer Intern}
+\location{May 2016 – Sep 2016 | Boston, MA}
+\begin{tabular}{l}
+Full stack software engineer for the Launch team to build the mobile user acquisition\\ campaign creator Jana Launch.\\
+	{\parbox{0.9\textwidth}{
+    	\begin{tightemize}
+        \item Used Angular 1.6, Google's Materialize and Less to deliver client facing \\website and Flask, Cassandra, Kafka, and Avro for supporting server
+        \item Primarily worked on implementing website event tracking and analytics pipeline to replace third party tracking Localytics and UTM integration for \\client product event tracking
+        \item Introduced more consistent documentation practice across the team
+        \end{tightemize}
+	}}
+\end{tabular}
+\vspace{\topsep}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     KRONOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \runsubsection{Kronos}
-\descript{|Service Oriented Software Engineer Intern}
+\descript{| Service Oriented Software Engineer Intern}
 
 \location{June 2015 – Sep 2015 | Chelmsford, MA}
 \begin{tabular}{l}
-Worked as a software engineer providing assistance to the Attestation Toolkit team.\\
+Software engineer providing assistance to the Attestation Toolkit team to support\\ Workforce Central, an employee managment system.\\
 	{\parbox{0.9\textwidth}{
     	\begin{tightemize}
-        \vspace{\topsep} % Hacky fix for awkward extra vertical space
-        \item Developed a module for Workforce Central product that provides an updated interface for managers to calculate and manage meal penalties for Puerto Rican workers. The implementation is written in Java, JavaScript, JSP files, JQuery and MSSQL.
-		\item Testing of various fixes, bugs, and simple penetration testing on core modules.
-		\item Various customer interaction, starting from the design phase to the rollout phase.
+        \item Developed a module and updated interface using Java, JS, JQuery and MSSQL calculate and manage meal penalties for Puerto Rican workers. 
+		\item Tested various fixes, uncovered bugs, and executed simple penetration tests on core modules.
         \end{tightemize}
 	}}
 \end{tabular}
 \sectionsep
+\end{minipage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     RELEVANT PROJECT WORK
@@ -199,66 +194,65 @@ Worked as a software engineer providing assistance to the Attestation Toolkit te
 
 \section{Relevant Project Work}
 
-\runsubsection{FAF Client}
-\descript{|micheljung.github.io/downlords-faf-client}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     RIPPLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\location{June 2015 – Present}
+\runsubsection{Ripples}
+\location{June 2016 – May 2017 | UMass Amherst, MA | \href{http://github.com/ripples/lecture-viewer}{Github://Ripples/Lecture-Viewer}}
 \begin{tabular}{l}
-A reimplementation of the python based FAForever client and refactoring of \\API/Server code. It is a 3rd party client that supports the unsupported game \\Supreme Commander.\\
+Lead and senior developer for UMass/Ithaca Ripples team tasked to build Lecture Viewer, a simplified lecture presenter for students.\\
+	{\parbox{0.9\textwidth}{
+    	\begin{tightemize}
+        \item Architected dockerized Flask, Node.js, Nginx and MySQL microservices for multi university deployment
+        \item Used React and Redux to provide a synchronized multi feed experience for lectures
+        \item Led and recruited team members, balancing their time with the tasks given
+        \end{tightemize}
+	}}
+\end{tabular}
+\vspace{\topsep}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Faforever
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\runsubsection{FAForever Project}
+\location{June 2015 – January 2017 | \href{http://github.com/FAForever}{Github://FAForever}}
+\begin{tabular}{l}
+Mentored under an open source dev to reimplement FAForever client and API, a community driven lobby for Supreme Commander.\\
 	{\parbox{0.9\textwidth}{
 		\begin{tightemize}
-		\item Written in Java and JavaFX using the Spring framework and Gradle as a dependency manager.
-		\item Contributed to a RESTFUL API using Flask for server client \\communication
-		\item Used by over 2500 people daily, ranging from a few minutes to 24 hours of usage.
+		\item Built client features using Java, JavaFX, Spring and Gradle along with supporting Flask based API server work
+        \item Took part in regular developer meetings influencing the direction of the project and tech decisions
 		\end{tightemize}
 	}}
 \end{tabular}
-\sectionsep
+\vspace{\topsep}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Party Smart
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \runsubsection{Party Smart}
-\descript{|partysmart.azurewebsites.net}
-
-\location{Oct 2015 – Present}
+\location{Jan 2016 - May 2016 | UMass Amherst, MA | \href{http://github.com/Cheyans/party-smart}{Github://Cheyans/Party-Smart}}
 \begin{tabular}{l}
-PartySmart is a party registration web application that allows off campus students to \\ register their parties with Umass Off Campus Student Services. Residents within a \\ quarter mile radius can directly complain to party hosts through the web app rather \\ than involving the police. \\
+Full stack developer and team lead for second iteration of PartySmart, a web app for students to register their parties with UMass.\\
 	{\parbox{0.9\textwidth}{
 		\begin{tightemize}
-		\item One of top 8 projects at HackUmass amongst the 69 projects submitted and winner of Umass Off-Campus Student Services sponsor prize.
-		\item Built with Node.js/Express using mongodb, Bing Maps api, and Google’s Materialize library.
-        \item I was tasked with implementing Bing maps, handling data sent between the front-end and back-end along with improving the UI.
+        \item Built with Node.js/Express using MongoDB, Google Maps api, and Boostrap
+        \item Led team to help balance their university work with the tasks at hand
 		\end{tightemize}
 	}}
 \end{tabular}
-\sectionsep
-
-\runsubsection{Sharks \& Minnows Online}
-\descript{|SharksAndMinnows.xyz:8080}
-
-\location{January 2016}
+\location{HackUmass | Oct 2015 | UMass Amherst, MA | \href{https://github.com/justincoon/partysmart}{Github://JustinCoon/PartySmart}}
 \begin{tabular}{l}
-An online multiplayer rendition of sharks \& minnows built during HackBeanPot 2016.\\
+Full stack developer to implement the first iteration of party smart to allow student's to register their party\\
 	{\parbox{0.9\textwidth}{
 		\begin{tightemize}
-		\item One of the top 10 projects at HackBeanPot
-		\item Multiplayer interfacing created using by Socket.io and served up on a Node.js server
-		\end{tightemize}
-	}}
-\end{tabular}
-\sectionsep
-
-\runsubsection{Friend.me}
-\descript{|Mobile Application Concept}
-
-\location{Oct 2015}
-\begin{tabular}{l}
-An app that matches individuals to other people around them according to their\\ interests and proximity and allows them to get in touch. It can suggest restaurants,\\ bars, group activities around them as a possible place to meet. \\
-	{\parbox{0.9\textwidth}{
-		\begin{tightemize}
-        \item Winner of the BostonHacks \$1k entrepreneurship prize from 1517 Fund
+        \item Built with Node.js/Express using mongodb, Bing Maps api, and Google’s Materialize library.
+		\item One of top 8 projects at HackUmass amongst the 69 projects submitted and winner of Umass Off-Campus\\ Student Services sponsor prize.
 		\end{tightemize}
 	}}
 \end{tabular}
 
-
-\end{minipage} 
 \end{document}  \documentclass[]{article}
