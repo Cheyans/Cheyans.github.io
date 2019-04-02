@@ -46,7 +46,9 @@
 
 \documentclass[]{deedy-resume-openfont}
 \usepackage{fancyhdr}
- 
+\usepackage{multicol}
+\setlength{\multicolsep}{2.5pt plus 2.5pt minus 1.5pt}% 50% of original values
+
 \pagestyle{fancy}
 \fancyhf{}
 
@@ -73,63 +75,51 @@
 %     COLUMN ONE
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{minipage}[t]{0.27\textwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Skills
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Skills}
+\begin{multicols}{2}
+\runsubsection{Tools \& Frameworks:}
+\descript{} 
+Flask \textbullet{} Node.js \textbullet{} React \textbullet{} Redux \textbullet{} Docker \textbullet{} MySQL
+Cassandra \textbullet{} Snowflake \textbullet{} Angular 1.6 \textbullet{} Avro \textbullet{} Kafka 
+\columnbreak
 
-\subsection{Languages:}
-Java \textbullet{} Javascript \textbullet{} Python \textbullet{} C \\
-Typescript \textbullet{} SQL \textbullet{} HTML \textbullet{} CSS
-\sectionsep
-
-\subsection{Tools \& Frameworks:}
-Flask \textbullet{} Node.js \textbullet{} React \textbullet{} Redux\\
-JavaFX \textbullet{} Angular 1.6 \textbullet{} MySQL\\
-Cassandra \textbullet{} Snowflake \textbullet{} Docker\\
-Nginx \textbullet{} Avro  \textbullet{} Kafka 
-\sectionsep
-\subsection{Environments:}
+\runsubsection{Languages \& Environments:}
+\descript{} 
+Python \textbullet{} Javascript \textbullet{} Java \textbullet{} Scala \textbullet{} 
+Typescript \textbullet{} SQL 
 Android \textbullet{} Linux/OSX
-\sectionsep
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     LINKS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Links} 
-\href{http://github.com/Cheyans}{\bf Github://Cheyans} \\
-\href{https://www.linkedin.com/in/cheyans}{\bf LinkedIn://Cheyans} \\
-\href{http://devpost.com/Cheyans}{\bf DevPost://Cheyans}
-\sectionsep
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Education
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Education} 
-\subsection{UMass Amherst}
-\descript{Computer Science}
-\location{2014-2017}
-\sectionsep
-\subsection{UConn Storrs}
-\location{2013-2014}
-\sectionsep
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     COLUMN TWO
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{minipage}
-\begin{minipage}[t]{0.71\textwidth}
+\end{multicols}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Experience}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     ARMORED THINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\runsubsection{Armored Things}
+\descript{| Software Engineer} 
+\location{August 2018 – Present | Boston, MA}
+
+\begin{tabular}{l}
+Core full stack software engineer building MVP for early customers with a focus on architecting data pipelines for scalability.\\
+	{\parbox{0.95\textwidth}{
+    	\begin{tightemize}
+        \item Used Kismet, ZMQ and dpkt to analyze and infer wireless device behavior from one sided 802.11 frames
+        \item Worked with Ansible, Terraform and Nomad to manage on-site and cloud service deployments
+        \item Researched and integrated Kafka Streams/Connect to create ETL jobs for high throughput writes to Timescale db
+        \item Improved coding practices by introducing linters, testing, common libraries, exception tracking across multiple projects
+        \end{tightemize}
+	}}
+\end{tabular}
+\sectionsep
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     JANA
@@ -140,15 +130,14 @@ Android \textbullet{} Linux/OSX
 \location{June 2017 – June 2018 | Boston, MA}
 
 \begin{tabular}{l}
-Full stack software engineer building mCent Browser, a chromium based mobile browser\\ for Android users in developing countries. \\
-	{\parbox{0.9\textwidth}{
+Full stack software engineer building mCent Browser, a chromium based mobile browser for Android users in developing countries. \\
+	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-        \vspace{\topsep}
-        \item Used Chromium based Android to create the browser and Flask, Cassandra, Kafka, and Avro for supporting server and Snowflake for data warehousing
+        \item Used Chromium based Android to build out browser and Flask, Cassandra, Kafka, and Avro for supporting server and Snowflake for data warehousing
         \item Created and maintained referral system and supporting analytics, driving at its peak over 80\% of new users
         \item Implemented major product features used by over 1.5M users daily
-        \item Helped architect initial iteration of user inventory system, leveraged to aid the most important draw to the app, free recharge
-        \item Worked in India conducting user interviews to uncover app redesign \\usability and technical issues
+        \item Helped architect initial iteration of user inventory, leveraged as primary mechanism for delivery of free recharge
+        \item Worked in India conducting user interviews to uncover app redesign usability and technical issues
         \item Addressed data issues, from duplicate ids to normalizing inconsistent tables
         \end{tightemize}
 	}}
@@ -157,9 +146,9 @@ Full stack software engineer building mCent Browser, a chromium based mobile bro
 \location{May 2016 – Sep 2016 | Boston, MA}
 \begin{tabular}{l}
 Full stack software engineer building the mCent UA campaign creator website Launch.\\
-	{\parbox{0.9\textwidth}{
+	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-        \item Used Angular 1.6, Google's Materialize and Less to deliver client facing \\website and Flask, Cassandra, Kafka, and Avro for supporting server
+        \item Used Angular 1.6, Google's Materialize and Less to deliver client facing website and Flask, Cassandra, Kafka, and Avro for supporting server
         \item Implemented website event tracking and analytics pipeline to replace third party tracking tool Localytics 
         \item Integrated Google UTM tracking for clients' app analytics
         \item Introduced more consistent documentation practices across the team
@@ -177,16 +166,14 @@ Full stack software engineer building the mCent UA campaign creator website Laun
 
 \location{June 2015 – Sep 2015 | Chelmsford, MA}
 \begin{tabular}{l}
-Software engineer providing assistance to the Attestation Toolkit team to support\\ Workforce Central, an employee management system.\\
-	{\parbox{0.9\textwidth}{
+Software engineer assisting the Attestation Toolkit team to support Workforce Central, an employee management system.\\
+	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-        \item Developed a module and updated interface using Java, JS, JQuery and MSSQL to calculate and manage meal penalties for Puerto Rican workers
-		\item Tested various fixes, uncovered bugs, and executed simple penetration tests on core modules
+        \item Developed a module and updated interface using Java, JS, JQuery and MSSQL to calculate and manage meal penalties for Puerto Rican workers, along with testing and uncovering bugs in various features.
         \end{tightemize}
 	}}
 \end{tabular}
-\end{minipage}
-
+\vspace{0.01pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     RELEVANT PROJECT WORK
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -200,8 +187,8 @@ Software engineer providing assistance to the Attestation Toolkit team to suppor
 \runsubsection{Ripples}
 \location{| June 2016 – May 2017 | UMass Amherst, MA | \href{http://github.com/ripples/lecture-viewer}{Github://Ripples/Lecture-Viewer}}
 \begin{tabular}{l}
-Lead and senior developer for UMass/Ithaca Ripples team tasked to build Lecture Viewer, a simplified lecture presenter for students.\\
-	{\parbox{0.9\textwidth}{
+Lead developer for UMass/Ithaca Ripples team tasked to build Lecture Viewer, a simplified lecture presenter for students.\\
+	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
         \item Architected dockerized Flask, Node.js, Nginx and MySQL microservices for multi university deployment
         \item Used React and Redux to provide a synchronized multi feed experience for lectures
@@ -219,7 +206,7 @@ Lead and senior developer for UMass/Ithaca Ripples team tasked to build Lecture 
 \location{| June 2015 – January 2017 | \href{http://github.com/FAForever}{Github://FAForever}}
 \begin{tabular}{l}
 Mentored under an open source dev to reimplement FAForever client and API, a community driven lobby for Supreme Commander.\\
-	{\parbox{0.9\textwidth}{
+	{\parbox{0.95\textwidth}{
 		\begin{tightemize}
 		\item Built client features using Java, JavaFX, Spring and Gradle along with the Flask based API server
         \item Took part in regular developer meetings influencing the direction of the project and tech decisions
@@ -229,28 +216,24 @@ Mentored under an open source dev to reimplement FAForever client and API, a com
 \vspace{2mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     Party Smart
+% Education
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{multicols}{2}
+\section{Education} 
+\runsubsection{UMass Amherst}
+\location{| 2014-2017 | Computer Science}
+\runsubsection{UConn Storrs}
+\location{| 2013-2014}
+\columnbreak
 
-\runsubsection{Party Smart}
-\location{| Jan 2016 - May 2016 | UMass Amherst, MA | \href{http://github.com/Cheyans/party-smart}{Github://Cheyans/Party-Smart}}
-\begin{tabular}{l}
-Full stack developer and team lead for second iteration of PartySmart, a web app for students to register their parties with UMass.\\
-	{\parbox{0.9\textwidth}{
-		\begin{tightemize}
-        \item Built with Node.js/Express using MongoDB, Google Maps api, and Boostrap
-        \item Led team to help balance their university work with the tasks at hand
-		\end{tightemize}
-	}}
-\end{tabular}
-\location{HackUmass | Oct 2015 | UMass Amherst, MA | \href{https://github.com/justincoon/partysmart}{Github://JustinCoon/PartySmart}}
-\begin{tabular}{l}
-Full stack developer to implement the first iteration of party smart\\
-	{\parbox{0.9\textwidth}{
-		\begin{tightemize}
-        \item Built with Node.js/Express using MongoDB, Bing Maps api, and Google’s Materialize library.
-		\item One of top 8 projects at HackUmass amongst the 69 projects submitted and winner of Umass Off-Campus\\ Student Services sponsor prize.
-		\end{tightemize}
-	}}
-\end{tabular}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     LINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Links} 
+\href{http://github.com/Cheyans}{\bf Github://Cheyans} \\
+\href{https://www.linkedin.com/in/cheyans}{\bf LinkedIn://Cheyans}
+\end{multicols}
+
+
 \end{document}  \documentclass[]{article}
+
