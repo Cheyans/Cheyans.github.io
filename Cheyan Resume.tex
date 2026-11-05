@@ -48,6 +48,10 @@
 \usepackage{fancyhdr}
 \usepackage{multicol}
 \setlength{\multicolsep}{2.5pt plus 2.5pt minus 1.5pt}% 50% of original values
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\newcommand{\jobheader}[3]{\par\noindent{\runsubsection{#1}}{\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont #2}\hfill{\color{headings}\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont #3}\par}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -79,43 +83,66 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Skills
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+\begin{minipage}[t]{0.53\textwidth}\raggedright
 \section{Skills}
-\begin{multicols}{2}
-\runsubsection{Languages \& Environments:}
-\descript{}
-Scala | Python | Typescript | Javascript | Java | SQL\newline
-Node.js | Fargate | Lambda | ECS | Docker | Linux
-\columnbreak
-
-\runsubsection{Tools \& Frameworks:}
-\descript{} 
-DynamoDB | S3 | AppConfig | Route53 | API Gateway \newline
-Step Functions | CDK | CloudFormation | CloudWatch
-\end{multicols}
-
+{\fontspec[Path = fonts/lato/]{Lato-Reg}Languages:} Java, TypeScript, SQL, Python, Scala, JavaScript\\
+{\fontspec[Path = fonts/lato/]{Lato-Reg}Technologies:} Kafka, AWS, PostgreSQL, MySQL, Docker, Grafana\\
+{\fontspec[Path = fonts/lato/]{Lato-Reg}AI:} Claude Code, Agent Skills, MCP
+\end{minipage}\hfill
+\begin{minipage}[t]{0.29\textwidth}\raggedright
+\section{Education}
+{\fontspec[Path = fonts/lato/]{Lato-Reg}UMass Amherst} | 2017\\
+Computer Science B.S.\\
+\end{minipage}\hfill
+\begin{minipage}[t]{0.16\textwidth}\raggedright
+\section{Links}
+\href{http://github.com/Cheyans}{\bf GitHub://Cheyans}\\
+\href{https://www.linkedin.com/in/cheyans}{\bf LinkedIn://Cheyans}
+\end{minipage}
+\par\vspace{4pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Experience}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Hubspot
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\jobheader{HubSpot - Fintech}{| Senior Software Engineer}{Feb 2024 – Present | Berlin, DE}
+
+\begin{tabular}{l}
+Backend Senior Software Engineer for the Fintech Sales Approval System.\\
+	{\parbox{0.95\textwidth}{
+        \begin{tightemize}
+        \item Designed project and led 1 engineer for 1 year to fully regionalize and optimize approval service latency by up to 49\%
+        \item Designed project and led 3 engineers for 6 months to reimplement core approval engine, migrating from legacy internal DSL to Java, improving debuggability and monitorability and cutting API response times by $\sim$73\%
+        \item Identified organization wide redundancy across regionalizing services and proposed a shared gateway service, built with a Principal Engineer and now used by 21 services across 10 teams
+        \item Mentored intern to support his career growth and guided him in delivering multiple projects
+        \item Worked with frontend team to design and implement APIs and product features
+        \item Improved service reliability, cutting errors and pages by 88\% through rigorous coding practices and alert reclassification
+        \item Leveraged Claude Code and internal AI tooling to deliver work in 2026 and set team standards for AI-assisted coding
+        \end{tightemize}
+	}}
+\end{tabular}
+\sectionsep
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Amazon
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\runsubsection{Amazon - eero}
-\descript{| Software Development Engineer 2}
-\location{December 2021 – Present | Berlin, DE}
+\jobheader{Amazon - eero}{| SDE 2}{Dec 2021 – Dec 2023 | Berlin, DE}
 
 \begin{tabular}{l}
 Backend Software Development Engineer for eero mobile and hardware teams.\\
 	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-        \item Lead cloud initiative over 8 months, working with mobile and router OS teams to enable the launch of eero PoE Gateway, designed and implemented data flow and APIs to connect downstream clients and upstream router, leveraged Scala, PostgreSQL, Play
-        \item Worked collaboratively with cloud, mobile and router OS teams to design and implement APIs and data flow to \newline downstream clients and upstream router to enable the launch of eero PoE Router
+        \item Led 8+ month cloud initiative, working with mobile and router OS teams to launch eero PoE Gateway, designed and implemented data flow and APIs to connect downstream clients and upstream router, leveraged Scala, PostgreSQL, Play
+        \item Worked collaboratively with cloud, mobile and router OS teams to design and implement APIs and data flow to downstream clients and upstream router to enable the launch of eero PoE Router
         \item Designed and implemented cloud APIs to support Wifi network ownership transfer to Wifi network admins
         \item Mentored SDE to support his career growth and help guide him in delivering his first solely owned project
-        \item Oncall for high impact services, some of which received nearly 7 million requests per minute
+        \item Oncall for high impact services, some of which received $\sim$7M requests per minute
         \item Optimized working processes to improve the communication and work effectiveness for globally situated teams
         \end{tightemize}
 	}}
@@ -123,21 +150,19 @@ Backend Software Development Engineer for eero mobile and hardware teams.\\
 \sectionsep
 
 
-\runsubsection{Amazon - Alexa Automatic Speech Recognition}
-\descript{| Software Development Engineer 2}
-\location{September 2019 – November 2021 | Cambridge, MA}
+\jobheader{Amazon - Alexa Automatic Speech Recognition}{| SDE 2}{Sept 2019 – Nov 2021 | Cambridge, MA}
 
 \begin{tabular}{l}
-Backend Software Development Engineer for text normalization team focused on building infrastructure for NLP model builders.\\
+Backend Software Development Engineer for text normalization team building infrastructure for NLP model builders.\\
 	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-    	\item Lead project and multiple engineers for over 1 year to re-architect model hosting service to scale using CDK, ECS, S3, CloudWatch, NLB, Route53, SageMaker, Api Gateway, KMS, AppConfig
+        \item Led project and multiple engineers for over 1 year to re-architect model hosting service to scale using CDK, ECS, S3, CloudWatch, NLB, Route53, SageMaker, API Gateway, KMS, AppConfig
         \item Aligned with nearly 100 internal teams to drive migration to new model hosting service, negotiating requirements and timelines to align with project goals. Requirements such as model versioning, latency concerns, API functionality, etc.
-        \item Worked with AWS Step Functions, Lambda, S3, DynamoDB, CloudFormation, CloudWatch to design and build model CI/CD pipeline over 6 months. Aligned with internal teams to drive migration and educate how to integrate with pipeline
-        \item Lead project for 9 months to deliver semi-automated data annotation pipeline to train neural models, leveraged EC2, S3, DynamoDB
-        \item Maintained high impact service that received 200 million requests per day and stored over 1600 models by resolving live issues, bugs and scaling hosts
+        \item Worked with Step Functions, Lambda, S3, DynamoDB, CloudFormation, CloudWatch to build model CI/CD pipeline \newline over 6 months. Aligned with internal teams to drive migration and educate teams on how to integrate with pipeline
+        \item Led 9 month project to deliver automated data annotation pipeline to train neural models, leveraged EC2, S3, DynamoDB
+        \item Maintained high impact service receiving 200M+ requests per day and storing 1600+ language models
         \item Supported internal customers with service onboarding, resolving live service/model issues and answering questions
-        \item Mentored SDE intern and supported him on delivering neural model C++/Python APIs and be hired by the team
+        \item Mentored SDE intern and supported him in delivering neural model C++/Python APIs, leading to a full time offer
         \item Consolidated and improved team documentation and onboarding practices
         \end{tightemize}
 	}}
@@ -145,12 +170,10 @@ Backend Software Development Engineer for text normalization team focused on bui
 \sectionsep
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     ARMORED THINGS
+%     LAMBENT SPACES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\runsubsection{Armored Things}
-\descript{| Software Engineer}
-\location{August 2018 – July 2019 | Boston, MA}
+\jobheader{Lambent Spaces}{| Software Engineer}{Aug 2018 – July 2019 | Boston, MA}
 
 \begin{tabular}{l}
 Core full stack software engineer building MVP for early customers with a focus on architecting data pipelines for scalability.\\
@@ -158,7 +181,7 @@ Core full stack software engineer building MVP for early customers with a focus 
     	\begin{tightemize}
         \item Used Kismet to infer wireless device behavior from one sided 802.11 frames to track devices in a local area
         \item Worked with Ansible, Terraform and Nomad to manage on-site integrations and cloud service deployments
-        \item Researched and integrated Kafka Streams/Connect to create ETL jobs for high throughput writes to Timescale db
+        \item Researched and integrated Kafka Streams/Connect to create ETL jobs for high throughput writes to TimescaleDB
         \item Implemented coding practices by introducing linters, common libraries, exception tracking across multiple projects
         \end{tightemize}
 	}}
@@ -169,40 +192,16 @@ Core full stack software engineer building MVP for early customers with a focus 
 %     JANA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\runsubsection{Jana Mobile}
-\descript{| Software Engineer} 
-\location{June 2017 – June 2018 | Boston, MA}
+\jobheader{Jana Mobile}{| Software Engineer}{June 2017 – June 2018 | Boston, MA}
 
 \begin{tabular}{l}
-Full stack software engineer building mCent Browser, a chromium based mobile browser for Android users in developing countries. \\
+Full stack software engineer building mCent Browser, a Chromium based browser for Android users in developing countries. \\
 	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-        \item Implemented major product features using Flask, Cassandra and Kafka for supporting server and Snowflake for data warehousing used by over 1.5M users daily
+        \item Built product features used by 1.5M+ users daily on Flask, Cassandra and Kafka, with Snowflake for data warehousing
         \item Architected, implemented and maintained referral system, supporting analytics, driving over 80\% of new users 
         \item Conducted in market user interviews to iterate on and improve user experiences
         \end{tightemize}
 	}}
 \end{tabular}
-\vspace{1mm}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Education
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{multicols}{2}
-\section{Education} 
-\runsubsection{UMass Amherst}
-\location{| 2014-2017 | Computer Science B.S.}
-\runsubsection{UConn Storrs}
-\location{| 2013-2014}
-\columnbreak
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     LINKS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Links} 
-\href{http://github.com/Cheyans}{\bf Github://Cheyans} \\
-\href{https://www.linkedin.com/in/cheyans}{\bf LinkedIn://Cheyans}
-\end{multicols}
-
-
-\end{document}  \documentclass[]{article}
+\end{document}
