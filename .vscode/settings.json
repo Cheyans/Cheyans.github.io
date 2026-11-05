@@ -1,0 +1,77 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "tectonic",
+      "command": "tectonic",
+      "args": [
+        "--synctex",
+        "--keep-logs",
+        "--outdir",
+        "%OUTDIR%",
+        "%DOC_EXT%"
+      ],
+      "env": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "Tectonic (XeLaTeX)",
+      "tools": [
+        "tectonic"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoClean.run": "never",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.linting.chktex.enabled": false,
+  "latex-workshop.formatting.latex": "none",
+  "cSpell.language": "en",
+  "cSpell.words": [
+    "Cheyan",
+    "Setayesh",
+    "Cheyans",
+    "eero",
+    "Fargate",
+    "AppConfig",
+    "CloudWatch",
+    "CloudFormation",
+    "SageMaker",
+    "Kismet",
+    "Ansible",
+    "Nomad",
+    "Timescale",
+    "Cassandra",
+    "mCent",
+    "UMass",
+    "UConn",
+    "Storrs",
+    "Deedy",
+    "HubSpot",
+    "hublet",
+    "hublets",
+    "hubletization",
+    "Vitess",
+    "Kafka",
+    "CHIRP",
+    "tightemize",
+    "runsubsection",
+    "descript",
+    "namesection",
+    "sectionsep",
+    "lastupdated",
+    "multicols",
+    "columnbreak",
+    "parbox",
+    "textwidth",
+    "fancyhdr",
+    "multicol",
+    "multicolsep",
+    "fancyhf",
+    "pagestyle"
+  ]
+}

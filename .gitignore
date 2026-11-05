@@ -1,1 +1,8 @@
 .DS_Store
+build/
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.xdv
+!.vscode/
