@@ -50,7 +50,9 @@
 \setlength{\multicolsep}{2.5pt plus 2.5pt minus 1.5pt}% 50% of original values
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
-
+\geometry{top=0.5cm, bottom=0.5cm}
+\let\oldtightemize\tightemize
+\renewcommand{\tightemize}{\oldtightemize\raggedright}
 \newcommand{\jobheader}[3]{\par\noindent{\runsubsection{#1}}{\color{subheadings}\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont #2}\hfill{\color{headings}\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont #3}\par}
 
 \pagestyle{fancy}
@@ -71,8 +73,10 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \namesection{Cheyan}{Setayesh}{ % Your name
-\href{mailto:Cheyan.set@gmail.com}{Cheyan.set@gmail.com} % Your contact information
+\href{mailto:Cheyan.set@gmail.com}{Cheyan.set@gmail.com}\\
+{\fontsize{9.5pt}{12.3pt}\selectfont \href{https://github.com/Cheyans}{github.com/Cheyans} | \href{https://www.linkedin.com/in/cheyans}{linkedin.com/in/cheyans}}\vspace{-4pt} % Your contact information
 }
+\vspace{-4pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -84,28 +88,23 @@
 % Skills
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
-\begin{minipage}[t]{0.53\textwidth}\raggedright
+\begin{minipage}[t]{0.65\textwidth}\raggedright
 \section{Skills}
 {\fontspec[Path = fonts/lato/]{Lato-Reg}Languages:} Java, TypeScript, SQL, Python, Scala, JavaScript\\
-{\fontspec[Path = fonts/lato/]{Lato-Reg}Technologies:} Kafka, AWS, PostgreSQL, MySQL, Docker, Grafana\\
+{\fontspec[Path = fonts/lato/]{Lato-Reg}Technologies:} AWS, Docker, Kafka, MySQL, PostgreSQL\\
 {\fontspec[Path = fonts/lato/]{Lato-Reg}AI:} Claude Code, Agent Skills, MCP
 \end{minipage}\hfill
-\begin{minipage}[t]{0.29\textwidth}\raggedright
+\begin{minipage}[t]{0.32\textwidth}\raggedright
 \section{Education}
-{\fontspec[Path = fonts/lato/]{Lato-Reg}UMass Amherst} | 2017\\
-Computer Science B.S.\\
-\end{minipage}\hfill
-\begin{minipage}[t]{0.16\textwidth}\raggedright
-\section{Links}
-\href{http://github.com/Cheyans}{\bf GitHub://Cheyans}\\
-\href{https://www.linkedin.com/in/cheyans}{\bf LinkedIn://Cheyans}
+{\fontspec[Path = fonts/lato/]{Lato-Reg}University of Massachusetts Amherst}\\
+Computer Science B.S. | 2017
 \end{minipage}
-\par\vspace{4pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Experience}
+\vspace{2pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Hubspot
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -113,16 +112,16 @@ Computer Science B.S.\\
 \jobheader{HubSpot - Fintech}{| Senior Software Engineer}{Feb 2024 – Present | Berlin, DE}
 
 \begin{tabular}{l}
-Backend Senior Software Engineer for the Fintech Sales Approval System.\\
+Backend Senior Software Engineer for the Fintech Sales Approval System, gating sales quotes for a \$3.1B-revenue company.\\
 	{\parbox{0.95\textwidth}{
         \begin{tightemize}
-        \item Designed project and led 1 engineer for 1 year to fully regionalize and optimize approval service latency by up to 49\%
-        \item Designed project and led 3 engineers for 6 months to reimplement core approval engine, migrating from legacy internal DSL to Java, improving debuggability and monitorability and cutting API response times by $\sim$73\%
-        \item Identified organization wide redundancy across regionalizing services and proposed a shared gateway service, built with a Principal Engineer and now used by 21 services across 10 teams
-        \item Mentored intern to support his career growth and guided him in delivering multiple projects
+        \item Led 1-year, AI-assisted regionalization of approval service on ECS, Kafka and MySQL across AWS regions with 1~engineer, restructuring code to cut latency up to 49\%
+        \item Designed and implemented project and led 3 engineers for 6 months to reimplement approval engine, migrating from legacy internal DSL to Java, improving debuggability and monitorability and cutting evaluation API latency by $\sim$73\%
+        \item Identified organization-wide redundancy across regionalizing services and proposed a shared gateway service, built with a Principal Engineer and now used by 20 services across 10 teams
+        \item Mentored intern on career growth and guided delivery of multiple projects
         \item Worked with frontend team to design and implement APIs and product features
-        \item Improved service reliability, cutting errors and pages by 88\% through rigorous coding practices and alert reclassification
-        \item Leveraged Claude Code and internal AI tooling to deliver work in 2026 and set team standards for AI-assisted coding
+        \item Served on-call and cut pages by 88\% through an alert redesign and code quality fixes that hardened the system
+        \item Leveraged Claude Code and internal AI tooling to deliver work in 2026 and set team standards for AI coding
         \end{tightemize}
 	}}
 \end{tabular}
@@ -138,11 +137,11 @@ Backend Senior Software Engineer for the Fintech Sales Approval System.\\
 Backend Software Development Engineer for eero mobile and hardware teams.\\
 	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-        \item Led 8+ month cloud initiative, working with mobile and router OS teams to launch eero PoE Gateway, designed and implemented data flow and APIs to connect downstream clients and upstream router, leveraged Scala, PostgreSQL, Play
+        \item Led cloud initiative for 8+ months with mobile and router OS teams to enable the launch of eero PoE Gateway, designing data flow and APIs to connect downstream clients and upstream router with Scala, PostgreSQL and Play
         \item Worked collaboratively with cloud, mobile and router OS teams to design and implement APIs and data flow to downstream clients and upstream router to enable the launch of eero PoE Router
-        \item Designed and implemented cloud APIs to support Wifi network ownership transfer to Wifi network admins
-        \item Mentored SDE to support his career growth and help guide him in delivering his first solely owned project
-        \item Oncall for high impact services, some of which received $\sim$7M requests per minute
+        \item Designed and implemented cloud APIs to support Wi-Fi network ownership transfer to Wi-Fi network admins
+        \item Mentored SDE through delivery of first solely owned project, supporting career growth
+        \item On-call for high-impact services, some of which received $\sim$7M requests per minute
         \item Optimized working processes to improve the communication and work effectiveness for globally situated teams
         \end{tightemize}
 	}}
@@ -156,13 +155,13 @@ Backend Software Development Engineer for eero mobile and hardware teams.\\
 Backend Software Development Engineer for text normalization team building infrastructure for NLP model builders.\\
 	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-        \item Led project and multiple engineers for over 1 year to re-architect model hosting service to scale using CDK, ECS, S3, CloudWatch, NLB, Route53, SageMaker, API Gateway, KMS, AppConfig
-        \item Aligned with nearly 100 internal teams to drive migration to new model hosting service, negotiating requirements and timelines to align with project goals. Requirements such as model versioning, latency concerns, API functionality, etc.
-        \item Worked with Step Functions, Lambda, S3, DynamoDB, CloudFormation, CloudWatch to build model CI/CD pipeline \newline over 6 months. Aligned with internal teams to drive migration and educate teams on how to integrate with pipeline
-        \item Led 9 month project to deliver automated data annotation pipeline to train neural models, leveraged EC2, S3, DynamoDB
-        \item Maintained high impact service receiving 200M+ requests per day and storing 1600+ language models
-        \item Supported internal customers with service onboarding, resolving live service/model issues and answering questions
-        \item Mentored SDE intern and supported him in delivering neural model C++/Python APIs, leading to a full time offer
+        \item Led project and 4 engineers for over 1 year to re-architect model hosting service to scale using CDK, ECS, S3, CloudWatch, NLB, Route53, SageMaker, API Gateway, KMS and AppConfig
+        \item Aligned with nearly 100 internal teams to drive migration to new model hosting service, negotiating timelines and requirements such as model versioning, latency and API features
+        \item Built model CI/CD pipeline over 6 months with Step Functions, Lambda, S3, DynamoDB, CloudFormation and CloudWatch, then drove adoption and educated internal teams on integration        
+        \item Led 9-month project to deliver automated data annotation pipeline for neural models with EC2, S3, DynamoDB
+        \item Maintained high-impact service receiving 200M+ requests per day and storing 1,600+ FST and neural language models
+        \item Supported internal customers with service onboarding, resolving live service and model issues and answering questions
+        \item Mentored SDE intern through delivering neural model C++ and Python APIs, leading to a full-time offer
         \item Consolidated and improved team documentation and onboarding practices
         \end{tightemize}
 	}}
@@ -176,13 +175,13 @@ Backend Software Development Engineer for text normalization team building infra
 \jobheader{Lambent Spaces}{| Software Engineer}{Aug 2018 – July 2019 | Boston, MA}
 
 \begin{tabular}{l}
-Core full stack software engineer building MVP for early customers with a focus on architecting data pipelines for scalability.\\
+Core full-stack software engineer building MVP for early customers with a focus on architecting data pipelines for scalability.\\
 	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
-        \item Used Kismet to infer wireless device behavior from one sided 802.11 frames to track devices in a local area
+        \item Used Kismet to infer wireless device behavior from one-sided 802.11 frames to track devices in a local area
         \item Worked with Ansible, Terraform and Nomad to manage on-site integrations and cloud service deployments
-        \item Researched and integrated Kafka Streams/Connect to create ETL jobs for high throughput writes to TimescaleDB
-        \item Implemented coding practices by introducing linters, common libraries, exception tracking across multiple projects
+        \item Researched and integrated Kafka Streams and Connect to create ETL jobs for high-throughput writes to TimescaleDB
+        \item Introduced linters, common libraries and exception tracking across multiple projects to standardize coding practices
         \end{tightemize}
 	}}
 \end{tabular}
@@ -195,12 +194,12 @@ Core full stack software engineer building MVP for early customers with a focus 
 \jobheader{Jana Mobile}{| Software Engineer}{June 2017 – June 2018 | Boston, MA}
 
 \begin{tabular}{l}
-Full stack software engineer building mCent Browser, a Chromium based browser for Android users in developing countries. \\
+Full-stack software engineer building mCent Browser, a Chromium-based browser for Android users in developing countries. \\
 	{\parbox{0.95\textwidth}{
     	\begin{tightemize}
         \item Built product features used by 1.5M+ users daily on Flask, Cassandra and Kafka, with Snowflake for data warehousing
         \item Architected, implemented and maintained referral system, supporting analytics, driving over 80\% of new users 
-        \item Conducted in market user interviews to iterate on and improve user experiences
+        \item Conducted in-market user interviews to iterate on and improve user experiences
         \end{tightemize}
 	}}
 \end{tabular}
