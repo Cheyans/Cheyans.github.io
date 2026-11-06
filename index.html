@@ -1,4 +1,14 @@
 <html>
+  <head>
+    <title>Cheyan Setayesh</title>
+    <script>
+      var touchOnly = matchMedia('(hover: none) and (pointer: coarse)').matches;
+      var iPad = /Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1;
+      if (touchOnly || iPad || navigator.pdfViewerEnabled === false) {
+        location.replace('Cheyan_Setayesh_Resume.pdf');
+      }
+    </script>
+  </head>
   <body style="margin:0">
     <iframe src="Cheyan_Setayesh_Resume.pdf" style="display:block;border:0;width:100vw;height:100vh"></iframe>
   </body>
