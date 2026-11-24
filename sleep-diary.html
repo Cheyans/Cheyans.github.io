@@ -121,6 +121,21 @@
   <textarea id="notes" placeholder="dreams, stress, caffeine timing, anything"></textarea>
 </div>
 
+<div class="card">
+  <label>History <span class="hint">one square per night, greener = more rested, grey = not logged, tap to open</span></label>
+  <div id="heatScroll" style="overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px;">
+    <div id="heat" style="display:flex; gap:3px; width:max-content;"></div>
+  </div>
+  <div class="mini" style="margin-top:10px; display:flex; align-items:center; gap:6px;">
+    Less
+    <span style="width:13px;height:13px;border-radius:3px;background:#0e2a1a;display:inline-block"></span>
+    <span style="width:13px;height:13px;border-radius:3px;background:#15803d;display:inline-block"></span>
+    <span style="width:13px;height:13px;border-radius:3px;background:#22a55a;display:inline-block"></span>
+    <span style="width:13px;height:13px;border-radius:3px;background:#2fbf71;display:inline-block"></span>
+    more rested
+  </div>
+</div>
+
 <div class="mini" id="count"></div>
 
 <div class="bar">
@@ -187,7 +202,42 @@ function loadInto(e){
   document.querySelectorAll("[data-pick]").forEach(g=>{ const v=e[g.dataset.pick]; picks[g.dataset.pick]=v||undefined;
     g.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c.dataset.v===v)); });
 }
-function refreshCount(){ const a=load(); document.getElementById("count").textContent=a.length+" day(s) saved. Last: "+(a.length?a[a.length-1].date:"none"); }
+function heatColor(e){
+  if(!e) return "#1b2230";
+  const r=+e.rested;
+  if(!r) return "#30506a";
+  return ["#0e2a1a","#14532d","#15803d","#22a55a","#2fbf71"][Math.max(1,Math.min(5,r))-1];
+}
+function fmtDate(d){ const o=new Date(d.getTime()-d.getTimezoneOffset()*60000); return o.toISOString().slice(0,10); }
+function renderHeat(){
+  const arr=load(); const map={}; arr.forEach(e=>map[e.date]=e);
+  const today=new Date(); today.setHours(12,0,0,0);
+  let first=new Date(today);
+  arr.forEach(e=>{ const p=e.date.split("-"); const d=new Date(+p[0],+p[1]-1,+p[2],12); if(d<first) first=d; });
+  const minStart=new Date(today); minStart.setDate(minStart.getDate()-7*16);
+  let start=first<minStart?new Date(first):minStart;
+  start.setDate(start.getDate()-((start.getDay()+6)%7));
+  const heat=document.getElementById("heat"); heat.innerHTML="";
+  for(let w=new Date(start); w<=today; w.setDate(w.getDate()+7)){
+    const col=document.createElement("div"); col.style.cssText="display:flex;flex-direction:column;gap:3px";
+    for(let i=0;i<7;i++){
+      const day=new Date(w); day.setDate(day.getDate()+i);
+      const cell=document.createElement("div");
+      cell.style.cssText="width:13px;height:13px;border-radius:3px";
+      if(day>today){ cell.style.background="transparent"; }
+      else {
+        const ds=fmtDate(day), e=map[ds];
+        cell.style.background=heatColor(e); cell.style.cursor="pointer";
+        cell.title=ds+(e?(" - rested "+(e.rested||"?")):" - not logged");
+        cell.onclick=()=>{ document.getElementById("date").value=ds; const ex=load().find(x=>x.date===ds); if(ex) loadInto(ex); window.scrollTo({top:0,behavior:"smooth"}); };
+      }
+      col.appendChild(cell);
+    }
+    heat.appendChild(col);
+  }
+  const sc=document.getElementById("heatScroll"); if(sc) sc.scrollLeft=sc.scrollWidth;
+}
+function refreshCount(){ const a=load(); document.getElementById("count").textContent=a.length+" day(s) saved. Last: "+(a.length?a[a.length-1].date:"none"); renderHeat(); }
 
 document.getElementById("date").onchange=()=>{ const ex=load().find(x=>x.date===document.getElementById("date").value); if(ex) loadInto(ex); };
 
