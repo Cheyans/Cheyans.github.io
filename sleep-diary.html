@@ -51,10 +51,7 @@
 
 <div class="card">
   <label>Times</label>
-  <div class="row">
-    <div><div class="mini">Went to bed</div><input type="time" id="bed"></div>
-    <div><div class="mini">Lights out, tried to sleep</div><input type="time" id="lightsout"></div>
-  </div>
+  <div><div class="mini">Went to bed and lights out</div><input type="time" id="bed"></div>
   <div class="row" style="margin-top:10px">
     <div><div class="mini">Final wake</div><input type="time" id="wake"></div>
     <div><div class="mini">Out of bed</div><input type="time" id="up"></div>
@@ -147,7 +144,7 @@
 
 <script>
 const KEY="sleepDiaryV1";
-const FIELDS=["date","bed","lightsout","wake","up","latency","awk","waso","backToSleep","rested","quality","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise","notes"];
+const FIELDS=["date","bed","wake","up","latency","awk","waso","backToSleep","rested","quality","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise","notes"];
 const steppers={latency:{min:0,max:180},awk:{min:0,max:15},waso:{min:0,max:300}};
 const state={latency:20,awk:1,waso:20};
 const picks={};
@@ -176,7 +173,7 @@ document.querySelectorAll("[data-pick]").forEach(g=>{
 function collect(){
   const e={};
   e.date=document.getElementById("date").value;
-  ["bed","lightsout","wake","up","notes"].forEach(id=>e[id]=document.getElementById(id).value);
+  ["bed","wake","up","notes"].forEach(id=>e[id]=document.getElementById(id).value);
   ["latency","awk","waso"].forEach(k=>e[k]=state[k]);
   ["rested","quality","backToSleep","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise"].forEach(k=>e[k]=picks[k]||"");
   e.savedAt=new Date().toISOString();
@@ -184,7 +181,7 @@ function collect(){
 }
 function loadInto(e){
   document.getElementById("date").value=e.date||todayStr();
-  ["bed","lightsout","wake","up","notes"].forEach(id=>document.getElementById(id).value=e[id]||"");
+  ["bed","wake","up","notes"].forEach(id=>document.getElementById(id).value=e[id]||"");
   ["latency","awk","waso"].forEach(k=>{ state[k]=e[k]!=null?+e[k]:state[k]; document.getElementById(k).textContent=state[k]; });
   document.querySelectorAll("[data-pick]").forEach(g=>{ const v=e[g.dataset.pick]; picks[g.dataset.pick]=v||undefined;
     g.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c.dataset.v===v)); });
