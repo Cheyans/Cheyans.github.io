@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#0b0f17">
+<title>Sleep Diary</title>
+<style>
+  :root { --bg:#0b0f17; --card:#141a26; --line:#263040; --txt:#e8edf5; --mut:#8a97ab; --acc:#4f8cff; --good:#2fbf71; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { margin:0; background:var(--bg); color:var(--txt); font:16px/1.4 -apple-system,system-ui,Segoe UI,Roboto,sans-serif; padding:16px 16px 120px; }
+  h1 { font-size:20px; margin:4px 0 2px; }
+  .sub { color:var(--mut); font-size:13px; margin-bottom:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:12px; }
+  label { display:block; font-weight:600; margin-bottom:8px; }
+  .hint { color:var(--mut); font-weight:400; font-size:13px; }
+  input[type=time], input[type=number], input[type=date], textarea {
+    width:100%; background:#0e1420; border:1px solid var(--line); color:var(--txt);
+    border-radius:10px; padding:12px; font-size:17px; }
+  textarea { min-height:64px; resize:vertical; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { flex:1 1 auto; min-width:64px; text-align:center; padding:12px 10px; border-radius:10px;
+    background:#0e1420; border:1px solid var(--line); color:var(--txt); font-size:16px; cursor:pointer; user-select:none; }
+  .chip.on { background:var(--acc); border-color:var(--acc); color:#fff; font-weight:700; }
+  .row { display:flex; gap:10px; } .row > div { flex:1; }
+  .step { display:flex; align-items:center; gap:10px; }
+  .step button { width:52px; height:52px; font-size:26px; border-radius:12px; background:#0e1420; border:1px solid var(--line); color:var(--txt); }
+  .step .val { flex:1; text-align:center; font-size:22px; font-weight:700; }
+  .bar { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:#0b0f17ee; backdrop-filter:blur(8px); border-top:1px solid var(--line); display:flex; gap:10px; }
+  .bar button { flex:1; padding:16px; font-size:17px; font-weight:700; border-radius:12px; border:none; }
+  #save { background:var(--good); color:#042; }
+  .ghost { background:#1b2230; color:var(--txt); border:1px solid var(--line) !important; }
+  .mini { font-size:13px; color:var(--mut); }
+  dialog { background:var(--card); color:var(--txt); border:1px solid var(--line); border-radius:14px; width:92%; max-width:520px; }
+  dialog textarea { min-height:160px; } .toast { position:fixed; left:50%; bottom:92px; transform:translateX(-50%);
+    background:var(--good); color:#042; padding:10px 16px; border-radius:10px; font-weight:700; opacity:0; transition:.2s; pointer-events:none; }
+  .toast.show { opacity:1; } a { color:var(--acc); }
+</style>
+</head>
+<body>
+<h1>Sleep diary</h1>
+<div class="sub" id="todayLabel"></div>
+
+<div class="card">
+  <label>Date <span class="hint">the night you are logging</span></label>
+  <input type="date" id="date">
+</div>
+
+<div class="card">
+  <label>Times</label>
+  <div class="row">
+    <div><div class="mini">Went to bed</div><input type="time" id="bed"></div>
+    <div><div class="mini">Tried to sleep</div><input type="time" id="lightsout"></div>
+  </div>
+  <div class="row" style="margin-top:10px">
+    <div><div class="mini">Final wake</div><input type="time" id="wake"></div>
+    <div><div class="mini">Out of bed</div><input type="time" id="up"></div>
+  </div>
+</div>
+
+<div class="card">
+  <label>Minutes to fall asleep</label>
+  <div class="step"><button data-step="latency" data-d="-5">-</button><div class="val"><span id="latency">20</span> min</div><button data-step="latency" data-d="5">+</button></div>
+</div>
+
+<div class="card">
+  <label>Times you woke in the night</label>
+  <div class="step"><button data-step="awk" data-d="-1">-</button><div class="val"><span id="awk">1</span></div><button data-step="awk" data-d="1">+</button></div>
+  <label style="margin-top:12px">Total minutes awake in the night</label>
+  <div class="step"><button data-step="waso" data-d="-10">-</button><div class="val"><span id="waso">20</span> min</div><button data-step="waso" data-d="10">+</button></div>
+</div>
+
+<div class="card">
+  <label>How rested do you feel? <span class="hint">1 wrecked, 5 great</span></label>
+  <div class="chips" data-pick="rested">
+    <div class="chip" data-v="1">1</div><div class="chip" data-v="2">2</div><div class="chip" data-v="3">3</div><div class="chip" data-v="4">4</div><div class="chip" data-v="5">5</div>
+  </div>
+  <label style="margin-top:12px">Sleep quality <span class="hint">1 poor, 5 good</span></label>
+  <div class="chips" data-pick="quality">
+    <div class="chip" data-v="1">1</div><div class="chip" data-v="2">2</div><div class="chip" data-v="3">3</div><div class="chip" data-v="4">4</div><div class="chip" data-v="5">5</div>
+  </div>
+</div>
+
+<div class="card">
+  <label>Agomelatine last night</label>
+  <div class="chips" data-pick="agomelatine">
+    <div class="chip" data-v="none">None</div><div class="chip" data-v="half">Half (12.5)</div><div class="chip" data-v="full">Full (25)</div>
+  </div>
+  <label style="margin-top:12px">L-tryptophan last night</label>
+  <div class="chips" data-pick="tryptophan"><div class="chip" data-v="no">No</div><div class="chip" data-v="yes">Yes</div></div>
+</div>
+
+<div class="card">
+  <label>Alcohol yesterday</label>
+  <div class="chips" data-pick="alcohol">
+    <div class="chip" data-v="0">0</div><div class="chip" data-v="1">1</div><div class="chip" data-v="2">2</div><div class="chip" data-v="3+">3+</div>
+  </div>
+  <label style="margin-top:12px">Caffeine after 14:00</label>
+  <div class="chips" data-pick="caffeine"><div class="chip" data-v="no">No</div><div class="chip" data-v="yes">Yes</div></div>
+  <label style="margin-top:12px">Exercised yesterday</label>
+  <div class="chips" data-pick="exercise"><div class="chip" data-v="no">No</div><div class="chip" data-v="yes">Yes</div></div>
+  <label style="margin-top:12px">Daytime nap yesterday</label>
+  <div class="chips" data-pick="nap"><div class="chip" data-v="no">No</div><div class="chip" data-v="yes">Yes</div></div>
+</div>
+
+<div class="card">
+  <label>Was the room too warm?</label>
+  <div class="chips" data-pick="warm"><div class="chip" data-v="no">No</div><div class="chip" data-v="abit">A bit</div><div class="chip" data-v="yes">Yes</div></div>
+  <label style="margin-top:12px">Did noise wake you?</label>
+  <div class="chips" data-pick="noise"><div class="chip" data-v="no">No</div><div class="chip" data-v="once">Once</div><div class="chip" data-v="often">Often</div></div>
+</div>
+
+<div class="card">
+  <label>Anything notable</label>
+  <textarea id="notes" placeholder="dreams, stress, caffeine timing, anything"></textarea>
+</div>
+
+<div class="mini" id="count"></div>
+
+<div class="bar">
+  <button id="save">Save</button>
+  <button class="ghost" id="export">Export CSV</button>
+  <button class="ghost" id="menu">More</button>
+</div>
+
+<dialog id="dlg">
+  <h3 id="dlgTitle">Data</h3>
+  <textarea id="dlgText"></textarea>
+  <div class="bar" style="position:static;background:none;border:none;padding:10px 0 0">
+    <button class="ghost" id="dlgCopy">Copy</button>
+    <button class="ghost" id="dlgImport">Import from box</button>
+    <button class="ghost" id="dlgClose">Close</button>
+  </div>
+  <div class="mini">Import replaces saved data with the CSV in the box. Export first if unsure.</div>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY="sleepDiaryV1";
+const FIELDS=["date","bed","lightsout","wake","up","latency","awk","waso","rested","quality","agomelatine","tryptophan","alcohol","caffeine","exercise","nap","warm","noise","notes"];
+const steppers={latency:{min:0,max:180},awk:{min:0,max:15},waso:{min:0,max:300}};
+const state={latency:20,awk:1,waso:20};
+const picks={};
+
+function load(){ try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return [];} }
+function save(arr){ localStorage.setItem(KEY,JSON.stringify(arr)); }
+function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1500); }
+
+function todayStr(){ const d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); }
+
+document.getElementById("date").value=todayStr();
+document.getElementById("todayLabel").textContent="Fill this in soon after you wake, every morning.";
+
+document.querySelectorAll("[data-step]").forEach(b=>b.onclick=()=>{
+  const k=b.dataset.step, d=+b.dataset.d; const r=steppers[k];
+  state[k]=Math.max(r.min,Math.min(r.max,(state[k]||0)+d));
+  document.getElementById(k).textContent=state[k];
+});
+document.querySelectorAll("[data-pick]").forEach(g=>{
+  g.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{
+    g.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+    c.classList.add("on"); picks[g.dataset.pick]=c.dataset.v;
+  });
+});
+
+function collect(){
+  const e={};
+  e.date=document.getElementById("date").value;
+  ["bed","lightsout","wake","up","notes"].forEach(id=>e[id]=document.getElementById(id).value);
+  ["latency","awk","waso"].forEach(k=>e[k]=state[k]);
+  ["rested","quality","agomelatine","tryptophan","alcohol","caffeine","exercise","nap","warm","noise"].forEach(k=>e[k]=picks[k]||"");
+  e.savedAt=new Date().toISOString();
+  return e;
+}
+function loadInto(e){
+  document.getElementById("date").value=e.date||todayStr();
+  ["bed","lightsout","wake","up","notes"].forEach(id=>document.getElementById(id).value=e[id]||"");
+  ["latency","awk","waso"].forEach(k=>{ state[k]=e[k]!=null?+e[k]:state[k]; document.getElementById(k).textContent=state[k]; });
+  document.querySelectorAll("[data-pick]").forEach(g=>{ const v=e[g.dataset.pick]; picks[g.dataset.pick]=v||undefined;
+    g.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c.dataset.v===v)); });
+}
+function refreshCount(){ const a=load(); document.getElementById("count").textContent=a.length+" day(s) saved. Last: "+(a.length?a[a.length-1].date:"none"); }
+
+document.getElementById("date").onchange=()=>{ const ex=load().find(x=>x.date===document.getElementById("date").value); if(ex) loadInto(ex); };
+
+document.getElementById("save").onclick=()=>{
+  const e=collect(); if(!e.date){toast("Pick a date");return;}
+  const a=load(); const i=a.findIndex(x=>x.date===e.date);
+  if(i>=0) a[i]=e; else a.push(e);
+  a.sort((x,y)=>x.date<y.date?-1:1); save(a); refreshCount(); toast("Saved "+e.date);
+};
+
+function toCSV(){
+  const a=load(); const head=FIELDS.concat(["savedAt"]);
+  const esc=v=>{ v=(v==null?"":""+v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; };
+  return head.join(",")+"\n"+a.map(e=>head.map(h=>esc(e[h])).join(",")).join("\n");
+}
+function openDlg(title,text){ document.getElementById("dlgTitle").textContent=title; document.getElementById("dlgText").value=text; document.getElementById("dlg").showModal(); }
+document.getElementById("export").onclick=()=>openDlg("CSV export",toCSV());
+document.getElementById("menu").onclick=()=>openDlg("Data (paste to import, or copy)",toCSV());
+document.getElementById("dlgClose").onclick=()=>document.getElementById("dlg").close();
+document.getElementById("dlgCopy").onclick=async()=>{ try{await navigator.clipboard.writeText(document.getElementById("dlgText").value); toast("Copied");}catch(e){toast("Select and copy manually");} };
+document.getElementById("dlgImport").onclick=()=>{
+  const t=document.getElementById("dlgText").value.trim(); if(!t){toast("Box is empty");return;}
+  const lines=t.split(/\r?\n/); const head=lines.shift().split(",");
+  const rows=lines.filter(l=>l.length).map(l=>{ const c=l.match(/("([^"]|"")*"|[^,]*)/g).filter((_,i)=>i%2===0).map(x=>x.replace(/^"|"$/g,"").replace(/""/g,'"')); const o={}; head.forEach((h,i)=>o[h]=c[i]); return o; });
+  if(rows.length){ save(rows); refreshCount(); document.getElementById("dlg").close(); toast("Imported "+rows.length); }
+};
+
+refreshCount();
+const ex=load().find(x=>x.date===todayStr()); if(ex) loadInto(ex);
+</script>
+</body>
+</html>
