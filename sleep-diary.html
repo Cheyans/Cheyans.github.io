@@ -53,7 +53,7 @@
   <label>Times</label>
   <div class="row">
     <div><div class="mini">Went to bed</div><input type="time" id="bed"></div>
-    <div><div class="mini">Tried to sleep</div><input type="time" id="lightsout"></div>
+    <div><div class="mini">Lights out, tried to sleep</div><input type="time" id="lightsout"></div>
   </div>
   <div class="row" style="margin-top:10px">
     <div><div class="mini">Final wake</div><input type="time" id="wake"></div>
@@ -71,6 +71,8 @@
   <div class="step"><button data-step="awk" data-d="-1">-</button><div class="val"><span id="awk">1</span></div><button data-step="awk" data-d="1">+</button></div>
   <label style="margin-top:12px">Total minutes awake in the night</label>
   <div class="step"><button data-step="waso" data-d="-10">-</button><div class="val"><span id="waso">20</span> min</div><button data-step="waso" data-d="10">+</button></div>
+  <label style="margin-top:12px">Trouble getting back to sleep? <span class="hint">after waking in the night</span></label>
+  <div class="chips" data-pick="backToSleep"><div class="chip" data-v="no">No</div><div class="chip" data-v="abit">A bit</div><div class="chip" data-v="yes">Yes</div></div>
 </div>
 
 <div class="card">
@@ -89,8 +91,12 @@
   <div class="chips" data-pick="agomelatine">
     <div class="chip" data-v="none">None</div><div class="chip" data-v="half">Half (12.5)</div><div class="chip" data-v="full">Full (25)</div>
   </div>
-  <label style="margin-top:12px">L-tryptophan last night</label>
-  <div class="chips" data-pick="tryptophan"><div class="chip" data-v="no">No</div><div class="chip" data-v="yes">Yes</div></div>
+  <label style="margin-top:12px">Melatonin last night</label>
+  <div class="chips" data-pick="melatonin">
+    <div class="chip" data-v="none">None</div><div class="chip" data-v="0.75">0.75 mg</div><div class="chip" data-v="1.5">1.5 mg</div><div class="chip" data-v="other">Other</div>
+  </div>
+  <label style="margin-top:12px">L-tryptophan last night <span class="hint">500 mg per pill</span></label>
+  <div class="chips" data-pick="tryptophan"><div class="chip" data-v="none">None</div><div class="chip" data-v="1">1 pill</div><div class="chip" data-v="2">2 pills</div></div>
 </div>
 
 <div class="card">
@@ -141,7 +147,7 @@
 
 <script>
 const KEY="sleepDiaryV1";
-const FIELDS=["date","bed","lightsout","wake","up","latency","awk","waso","rested","quality","agomelatine","tryptophan","alcohol","caffeine","exercise","nap","warm","noise","notes"];
+const FIELDS=["date","bed","lightsout","wake","up","latency","awk","waso","backToSleep","rested","quality","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise","notes"];
 const steppers={latency:{min:0,max:180},awk:{min:0,max:15},waso:{min:0,max:300}};
 const state={latency:20,awk:1,waso:20};
 const picks={};
@@ -172,7 +178,7 @@ function collect(){
   e.date=document.getElementById("date").value;
   ["bed","lightsout","wake","up","notes"].forEach(id=>e[id]=document.getElementById(id).value);
   ["latency","awk","waso"].forEach(k=>e[k]=state[k]);
-  ["rested","quality","agomelatine","tryptophan","alcohol","caffeine","exercise","nap","warm","noise"].forEach(k=>e[k]=picks[k]||"");
+  ["rested","quality","backToSleep","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise"].forEach(k=>e[k]=picks[k]||"");
   e.savedAt=new Date().toISOString();
   return e;
 }
