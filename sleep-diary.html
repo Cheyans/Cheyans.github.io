@@ -45,7 +45,7 @@
 <div class="sub" id="todayLabel"></div>
 
 <div class="card">
-  <label>Date <span class="hint">the night you are logging</span></label>
+  <label>Night of <span class="hint">the evening you went to bed, usually yesterday</span></label>
   <input type="date" id="date">
 </div>
 
@@ -154,8 +154,9 @@ function save(arr){ localStorage.setItem(KEY,JSON.stringify(arr)); }
 function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1500); }
 
 function todayStr(){ const d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); }
+function nightStr(){ const d=new Date(); d.setDate(d.getDate()-1); const o=new Date(d.getTime()-d.getTimezoneOffset()*60000); return o.toISOString().slice(0,10); }
 
-document.getElementById("date").value=todayStr();
+document.getElementById("date").value=nightStr();
 document.getElementById("todayLabel").textContent="Fill this in soon after you wake, every morning.";
 
 document.querySelectorAll("[data-step]").forEach(b=>b.onclick=()=>{
@@ -180,7 +181,7 @@ function collect(){
   return e;
 }
 function loadInto(e){
-  document.getElementById("date").value=e.date||todayStr();
+  document.getElementById("date").value=e.date||nightStr();
   ["bed","wake","up","notes"].forEach(id=>document.getElementById(id).value=e[id]||"");
   ["latency","awk","waso"].forEach(k=>{ state[k]=e[k]!=null?+e[k]:state[k]; document.getElementById(k).textContent=state[k]; });
   document.querySelectorAll("[data-pick]").forEach(g=>{ const v=e[g.dataset.pick]; picks[g.dataset.pick]=v||undefined;
@@ -215,7 +216,7 @@ document.getElementById("dlgImport").onclick=()=>{
 };
 
 refreshCount();
-const ex=load().find(x=>x.date===todayStr()); if(ex) loadInto(ex);
+const ex=load().find(x=>x.date===nightStr()); if(ex) loadInto(ex);
 </script>
 </body>
 </html>
