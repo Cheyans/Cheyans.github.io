@@ -51,11 +51,16 @@
 
 <div class="card">
   <label>Times</label>
-  <div><div class="mini">Went to bed and lights out</div><input type="time" id="bed"></div>
+  <div class="row">
+    <div><div class="mini">Last screen (phone, laptop, TV)</div><input type="time" id="screen"></div>
+    <div><div class="mini">Went to bed and lights out</div><input type="time" id="bed"></div>
+  </div>
   <div class="row" style="margin-top:10px">
     <div><div class="mini">Final wake</div><input type="time" id="wake"></div>
     <div><div class="mini">Out of bed</div><input type="time" id="up"></div>
   </div>
+  <label style="margin-top:12px">Woke earlier than you wanted? <span class="hint">and could not get back to sleep</span></label>
+  <div class="chips" data-pick="ema"><div class="chip" data-v="no">No</div><div class="chip" data-v="15-30">15-30 min</div><div class="chip" data-v="30-60">30-60 min</div><div class="chip" data-v="60+">1h+</div></div>
 </div>
 
 <div class="card">
@@ -79,6 +84,10 @@
   </div>
   <label style="margin-top:12px">Sleep quality <span class="hint">1 poor, 5 good</span></label>
   <div class="chips" data-pick="quality">
+    <div class="chip" data-v="1">1</div><div class="chip" data-v="2">2</div><div class="chip" data-v="3">3</div><div class="chip" data-v="4">4</div><div class="chip" data-v="5">5</div>
+  </div>
+  <label style="margin-top:12px">How wired were you at bedtime? <span class="hint">1 calm, 5 wired</span></label>
+  <div class="chips" data-pick="wired">
     <div class="chip" data-v="1">1</div><div class="chip" data-v="2">2</div><div class="chip" data-v="3">3</div><div class="chip" data-v="4">4</div><div class="chip" data-v="5">5</div>
   </div>
 </div>
@@ -106,7 +115,7 @@
   <label style="margin-top:12px">Exercised yesterday</label>
   <div class="chips" data-pick="exercise"><div class="chip" data-v="no">No</div><div class="chip" data-v="yes">Yes</div></div>
   <label style="margin-top:12px">Daytime nap yesterday</label>
-  <div class="chips" data-pick="nap"><div class="chip" data-v="no">No</div><div class="chip" data-v="yes">Yes</div></div>
+  <div class="chips" data-pick="nap"><div class="chip" data-v="none">None</div><div class="chip" data-v="lt20">Under 20 min</div><div class="chip" data-v="20-60">20-60 min</div><div class="chip" data-v="60+">1h+</div></div>
 </div>
 
 <div class="card">
@@ -159,7 +168,7 @@
 
 <script>
 const KEY="sleepDiaryV1";
-const FIELDS=["date","bed","wake","up","latency","awk","waso","backToSleep","rested","quality","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise","notes"];
+const FIELDS=["date","screen","bed","wake","up","ema","latency","awk","waso","backToSleep","rested","quality","wired","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise","notes"];
 const steppers={latency:{min:0,max:180},awk:{min:0,max:15},waso:{min:0,max:300}};
 const state={latency:20,awk:1,waso:20};
 const picks={};
@@ -172,7 +181,7 @@ function todayStr(){ const d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezo
 function nightStr(){ const d=new Date(); d.setDate(d.getDate()-1); const o=new Date(d.getTime()-d.getTimezoneOffset()*60000); return o.toISOString().slice(0,10); }
 
 document.getElementById("date").value=nightStr();
-document.getElementById("todayLabel").textContent="Fill this in soon after you wake, every morning.";
+document.getElementById("todayLabel").textContent="Fill this in within an hour of getting up, every morning.";
 
 document.querySelectorAll("[data-step]").forEach(b=>b.onclick=()=>{
   const k=b.dataset.step, d=+b.dataset.d; const r=steppers[k];
@@ -189,15 +198,15 @@ document.querySelectorAll("[data-pick]").forEach(g=>{
 function collect(){
   const e={};
   e.date=document.getElementById("date").value;
-  ["bed","wake","up","notes"].forEach(id=>e[id]=document.getElementById(id).value);
+  ["screen","bed","wake","up","notes"].forEach(id=>e[id]=document.getElementById(id).value);
   ["latency","awk","waso"].forEach(k=>e[k]=state[k]);
-  ["rested","quality","backToSleep","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise"].forEach(k=>e[k]=picks[k]||"");
+  ["ema","rested","quality","wired","backToSleep","agomelatine","melatonin","tryptophan","alcohol","caffeine","exercise","nap","warm","noise"].forEach(k=>e[k]=picks[k]||"");
   e.savedAt=new Date().toISOString();
   return e;
 }
 function loadInto(e){
   document.getElementById("date").value=e.date||nightStr();
-  ["bed","wake","up","notes"].forEach(id=>document.getElementById(id).value=e[id]||"");
+  ["screen","bed","wake","up","notes"].forEach(id=>document.getElementById(id).value=e[id]||"");
   ["latency","awk","waso"].forEach(k=>{ state[k]=e[k]!=null?+e[k]:state[k]; document.getElementById(k).textContent=state[k]; });
   document.querySelectorAll("[data-pick]").forEach(g=>{ const v=e[g.dataset.pick]; picks[g.dataset.pick]=v||undefined;
     g.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c.dataset.v===v)); });
@@ -248,10 +257,19 @@ document.getElementById("save").onclick=()=>{
   a.sort((x,y)=>x.date<y.date?-1:1); save(a); refreshCount(); toast("Saved "+e.date);
 };
 
+function toMinutes(t){ if(!t) return null; const p=t.split(":").map(Number); return p[0]*60+p[1]; }
+function deriveSleep(e){
+  const b=toMinutes(e.bed), w=toMinutes(e.wake), u=toMinutes(e.up);
+  if(b==null||w==null) return {tib_min:"",tst_min:"",se_pct:""};
+  const sinceBed=x=>(x-b+1440)%1440;
+  const toWake=sinceBed(w), tib=u==null?toWake:sinceBed(u);
+  const tst=Math.max(0,toWake-(+e.latency||0)-(+e.waso||0));
+  return {tib_min:tib, tst_min:tst, se_pct:tib>0?Math.round(100*tst/tib):""};
+}
 function toCSV(){
-  const a=load(); const head=FIELDS.concat(["savedAt"]);
+  const a=load(); const head=FIELDS.concat(["tib_min","tst_min","se_pct","savedAt"]);
   const esc=v=>{ v=(v==null?"":""+v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; };
-  return head.join(",")+"\n"+a.map(e=>head.map(h=>esc(e[h])).join(",")).join("\n");
+  return head.join(",")+"\n"+a.map(e=>{ const r=Object.assign({},e,deriveSleep(e)); return head.map(h=>esc(r[h])).join(","); }).join("\n");
 }
 function openDlg(title,text){ document.getElementById("dlgTitle").textContent=title; document.getElementById("dlgText").value=text; document.getElementById("dlg").showModal(); }
 document.getElementById("export").onclick=()=>openDlg("CSV export",toCSV());
